@@ -14,8 +14,8 @@ void read(string address)
     {
         while (getline(in, text))
         {
-            cout << text.length() << endl;
-        }
+            cout << text.length() << endl;//почему text.length?
+        }//новый файл
     }
     else
     {
