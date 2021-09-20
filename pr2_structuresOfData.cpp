@@ -17,6 +17,7 @@ void read(string address)
             cout << text.length() << endl;//почему text.length?
         }//новый файл
         //также можно использовать fstream
+        //https://ravesli.com/urok-85-dinamicheskoe-vydelenie-pamyati-operatory-new-i-delete/
     }
     else
     {
