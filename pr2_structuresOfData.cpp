@@ -16,6 +16,7 @@ void read(string address)
         {
             cout << text.length() << endl;//почему text.length?
         }//новый файл
+        //также можно использовать fstream
     }
     else
     {
