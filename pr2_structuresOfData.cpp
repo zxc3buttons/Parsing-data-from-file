@@ -5,7 +5,7 @@
 using namespace std;
 
 //ex 1, part 1
-void read(string address) 
+void read(string address)
 {
     ifstream in(address);
 
@@ -14,7 +14,7 @@ void read(string address)
     {
         while (getline(in, text))
         {
-            cout << text.length() << endl;
+            cout << text << endl;
         }
     }
     else
@@ -27,7 +27,7 @@ void read(string address)
 
 
 //ex 1, part 2
-void read_only_even_numbers(string address)
+void read_only_even_numbers(string address, string new_address)
 {
     ifstream in(address);
     string text;
@@ -44,7 +44,7 @@ void read_only_even_numbers(string address)
 
     in.close();
 
-    ofstream out(address);
+    ofstream out(new_address);
 
     if (out.is_open())
     {
@@ -109,11 +109,11 @@ string* keys(string address) {
 }
 
 //ex 2 part 1
-void format(string address)
+void format(string address, string new_address)
 {
     ifstream in(address);
-    
-    int n = size_of(address) - 1;//размер массива строк
+
+    int n = size_of(address);//размер массива строк
     string str;
     string* old_strings = NULL;
     string* new_strings = NULL;
@@ -157,12 +157,12 @@ void format(string address)
         }
     }
 
-    ofstream out(address);
-    
+    ofstream out(new_address);
+
     if (out.is_open()) {
-       for (int i = 0; i < n; i++) {
-           out << new_strings[i] << endl;
-       }
+        for (int i = 0; i < n; i++) {
+            out << new_strings[i] << endl;
+        }
     }
 
     out.close();
@@ -183,7 +183,7 @@ void output(string address) {
 
     in.close();
 }
-//ex 2 part 3
+//ex 2 part 3 - searching numero of certain note
 int search(string address, string key) {
 
     ifstream in(address);
@@ -218,7 +218,7 @@ string search_by_index(string address, int index) {
 
     if (in.is_open()) {
         while (getline(in, str)) {
-            
+
             int default_index_of_data = 2;
             for (size_t i = 2; i < str.length(); i++) {
 
@@ -236,7 +236,7 @@ string search_by_index(string address, int index) {
                 for (size_t i = default_index_of_data; i < str.length(); i++) {
                     required_str += str[i];
                 }
-                
+
                 in.close();
                 return required_str;
             }
@@ -256,7 +256,7 @@ string search_by_key(string address, string key) {
 
     ifstream in(address);
     string str = "";
-    
+
     for (int i = 0; i < size_of(address); i++) {
         if (key == keys(address)[i]) {
             return search_by_index(address, i);
@@ -266,18 +266,42 @@ string search_by_key(string address, string key) {
     return "not found";
 
 }
+//ex 3 - sort function
+void sort(string address) {
+
+    fstream file(address);
+    string str = "";
+
+    if (file.is_open()) {
+        getline(file, str);
+    }
+
+    int sorted_array[10] = { 0 };
+
+    for (size_t i = 0; i < str.length(); i++) {
+
+        sorted_array[str[i] - 48] = 1;
+
+    }
+    file.close();
+
+    ofstream outfile("C:/Users/Олег/Desktop/all needed/с++/sorted.txt");
+
+    for (size_t i = 0; i < str.length(); i++) {
+        if (sorted_array[i] == 1) outfile << i;
+    }
+
+    outfile.close();
+}
 
 int main()
 {
     string address = "C:/Users/Олег/Desktop/all needed/с++/input.txt";
+    string new_address = "C:/Users/Олег/Desktop/all needed/с++/output.txt";
 
-    format(address);
-    //output(address);
-    //cout << search_by_index(address, 1);
-    /*for (int i = 0; i < size_of(address); i++) {
-        cout << i << " " << keys(address)[i] << endl;
-    }*/
-    //cout << search_by_key(address, "121");
+    format(address, new_address);
+    
 }
+
 
 
