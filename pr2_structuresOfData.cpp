@@ -14,7 +14,7 @@ void read(string address)
     {
         while (getline(in, text))
         {
-            cout << text << endl;
+            cout << text.length() << endl;
         }
     }
     else
