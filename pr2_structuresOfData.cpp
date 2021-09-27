@@ -4,6 +4,9 @@
 #include <bitset>
 using namespace std;
 
+//file format for ex1:
+//numerical sequence: 12345
+
 //ex 1, part 1
 void read(string address)
 {
@@ -75,6 +78,11 @@ int size_of(string address) {
 
     return n;
 }
+
+// for ex2 file format: key-data key-data:
+//12-asd
+//45-dsds
+
 //ex 2 p5
 string* keys(string address) {
 
@@ -266,8 +274,10 @@ string search_by_key(string address, string key) {
     return "not found";
 
 }
-//ex 3 - sort function
-void sort(string address) {
+
+//file format: up to ten digits without gaps: 98765541 -> 14556789
+//ex 3 - sort function 
+void sort(string address, string new_address) {
 
     fstream file(address);
     string str = "";
@@ -285,9 +295,9 @@ void sort(string address) {
     }
     file.close();
 
-    ofstream outfile("C:/Users/Олег/Desktop/all needed/с++/sorted.txt");
+    ofstream outfile(new_address);
 
-    for (size_t i = 0; i < str.length(); i++) {
+    for (size_t i = 0; i < 10; i++) {
         if (sorted_array[i] == 1) outfile << i;
     }
 
@@ -296,11 +306,11 @@ void sort(string address) {
 
 int main()
 {
-    string address = "C:/Users/Олег/Desktop/all needed/с++/input.txt";
-    string new_address = "C:/Users/Олег/Desktop/all needed/с++/output.txt";
+    string address = "C:/input.txt";
+    string new_address = "C:/output.txt";
 
-    format(address, new_address);
-    
+    sort(address, new_address);
+
 }
 
 
